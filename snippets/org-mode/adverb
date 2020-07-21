@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: adverb
+# key: adv
+# --
+
+** Adverb                                                             :drill:
+   :PROPERTIES:
+   :DRILL_CARD_TYPE: twosided
+   :END:
+*** De
+    ${1:adverb}
+*** Ru
+    $0

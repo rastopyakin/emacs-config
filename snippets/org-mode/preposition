@@ -1,0 +1,15 @@
+# -*- mode: snippet -*-
+# name: Preposition
+# key: prp
+# --
+
+** Präposition                                                        :drill:
+   :PROPERTIES:
+   :DRILL_CARD_TYPE: twosided
+   :END:
+*** De
+    {$1:prep}
+*** Ru
+    {$2:перевод}
+*** Extra
+    $0

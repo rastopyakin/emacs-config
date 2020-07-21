@@ -1,0 +1,24 @@
+# -*- mode: snippet -*-
+# name: unverben
+# key: unverben
+# --
+
+** Verb                                                               :drill:
+   :PROPERTIES:
+   :DRILL_CARD_TYPE: twosided
+   :END:
+*** De
+    ${1:sein}
+*** Ru
+    $0
+*** Dekl.
+    |            | Person       | Form  |
+    |------------+--------------+-------|
+    | Präsens    | ich          | ${2:bin}   |
+    |            | du           | ${3:bist}  |
+    |            | er, sie, est | ${4:ist}   |
+    |------------+--------------+-------|
+    | Präteritum | ich          | ${5:war}   |
+    |------------+--------------+-------|
+    | Imperativ  | Singular     | ${6:sei}!  |
+    |            | Plural       | ${7:seid!} |

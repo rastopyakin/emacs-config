@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: test
+# key: test
+# --
+
+input1 ${1:$$(yas-choose-value '("Foo" "Bar"))}
+input2 ${2:Moo}
+autotext ${1:$(if (equal yas-text "Foo") "Xui"
+	 	  (if (equal yas-text "Bar") "Pizda" "Err"))}
+cat ${2:$(make-string (length (concat (yas-field-value 1) yas-text)) ?\=)}

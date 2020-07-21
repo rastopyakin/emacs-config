@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: adjektiv
+# key: adjektiv
+# --
+** Adjektiv                                                           :drill:
+   :PROPERTIES:
+   :DRILL_CARD_TYPE: twosided
+   :END:
+   Übersetze das Wort:
+*** De
+    ${1:Adjektiv}
+*** Ru
+    $0

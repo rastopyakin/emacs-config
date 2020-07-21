@@ -1,0 +1,27 @@
+# -*- mode: snippet -*-
+# name: verben
+# key: verben
+# --
+** Verb                                                               :drill:
+   :PROPERTIES:
+   :DRILL_CARD_TYPE: twosided
+   :END:
+   Übersetze das Wort:
+*** De
+    ${1:schreiben}
+*** Ru
+    $0
+*** Dekl.
+    |           | Person      | Form       |
+    |-----------+-------------+------------|
+    | Präsens   | ich         | ${1:$(let ((root (if (string-match ".+en" yas-text) (substring yas-text 0 -2)) )) (concat root "e"))}  |
+    |           | du          | ${1:$(let ((root (if (string-match ".+en" yas-text) (substring yas-text 0 -2)))) (concat root (if (member (substring root -1 nil) '("s" "z" "x" "ß")) "t" "st")))}  |
+    |           | er, sie, es | ${1:$(let ((root (if (string-match ".+en" yas-text) (substring yas-text 0 -2)) )) (concat root "t"))}  |
+    |-----------+-------------+------------|
+    | Imperativ | Singular    | ${1:$(let ((root (if (string-match ".+en" yas-text) (substring yas-text 0 -2)) )) (concat root ""))}! |
+    |           | Plural      | ${1:$(let ((root (if (string-match ".+en" yas-text) (substring yas-text 0 -2)) )) (concat root "t"))}! |
+    |------------+-------------+----------|
+    | Präteritum | ich         | ${1:$(let ((root (if (string-match ".+en" yas-text) (substring yas-text 0 -2)) )) (concat root "te"))}  |
+        |------------+-------------+-----------|
+        | Perfekt    | Partizip II | Hilfsverb   |
+    |            | $2  | sein, haben |

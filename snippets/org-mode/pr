@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: Preposition
+# key: prp
+# --
+** Präposition                                                        :drill:
+   :PROPERTIES:
+   :DRILL_CARD_TYPE: twosided
+   :END:
+*** De
+    ${1:aus} ([${2:$$(yas-choose-value '("D" "A"))}])
+*** Ru
+    $0

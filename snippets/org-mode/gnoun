@@ -1,0 +1,21 @@
+# -*- mode: snippet -*-
+# name: nomen
+# key: nomen
+# --
+** Nomen                                                               :drill:
+   :PROPERTIES:
+   :DRILL_CARD_TYPE: twosided
+   :END:
+   Übersetze das Wort:
+*** De
+    ${1:Wort}
+*** Ru
+    $0
+*** Dekl.
+${2:$$(yas-choose-value '("m" "n" "f"))}, <-$3, $4>
+|           | Singular    | Plural      |
+|-----------+-------------+-------------|
+| Nominativ | ${2:$(if (equal yas-text "m") "der" (if (equal yas-text "n") "das" (if (equal yas-text "f") "die" "err")))} $1  | die ${4:$(if (string-match "-.*" yas-text) (concat (yas-field-value 1) (substring yas-text 1 nil)) yas-text)} |
+| Genitiv   | ${2:$(if (equal yas-text "m") "des" (if (equal yas-text "n") "des" (if (equal yas-text "f") "der" "err")))} $1$3 | der ${4:$(if (string-match "-.*" yas-text) (concat (yas-field-value 1) (substring yas-text 1 nil)) yas-text)} |
+| Dativ     | ${2:$(if (equal yas-text "m") "dem" (if (equal yas-text "n") "dem" (if (equal yas-text "f") "der" "err")))} $1  | den ${4:$(if (string-match "-.*" yas-text) (concat (yas-field-value 1) (substring yas-text 1 nil)) yas-text)} |
+| Akkusativ | ${2:$(if (equal yas-text "m") "den" (if (equal yas-text "n") "das" (if (equal yas-text "f") "die" "err")))} $1  | die ${4:$(if (string-match "-.*" yas-text) (concat (yas-field-value 1) (substring yas-text 1 nil)) yas-text)} |
