@@ -53,7 +53,7 @@
 (require 'projectile)
 (setq projectile-completion-system 'helm)
 (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
-(projectile-global-mode)
+(projectile-mode)
 
 (require 'helm-projectile)
 (helm-projectile-on)
@@ -65,13 +65,13 @@ If point was already at that position, move point to beginning of
 line."
   (interactive) ; Use (interactive "^") in Emacs 23 to make shift-select work
   (let ((oldpos (point)))
-    ;; (back-to-indentation)
     (beginning-of-visual-line)
     (and (= oldpos (point))
-	 (beginning-of-line-text))
+	 (back-to-indentation))
     )
   )
-(global-set-key (kbd "C-a") 'my-smart-beginning-of-line)
+
+(define-key visual-line-mode-map [remap move-beginning-of-line] 'my-smart-beginning-of-line)
 
 (global-set-key (kbd "C-'") 'comment-line)
 
