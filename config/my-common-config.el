@@ -5,8 +5,8 @@
 (setq-default major-mode 'text-mode)
 
 (setq default-frame-alist '((vertical-scroll-bars . nil)
-			    (tool-bar-lines . 0)
-			    (menu-bar-lines . 0)
+			    (menu-bar-lines . nil)
+			    (tool-bar-lines . nil)
 			    (fullscreen . maximized)))
 
 (show-paren-mode 1)
