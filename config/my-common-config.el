@@ -58,18 +58,17 @@
 (require 'helm-projectile)
 (helm-projectile-on)
 
+;; miscellaneous
+
 (defun my-smart-beginning-of-line ()
   "Move point to first non-whitespace character or beginning-of-line.
-Move point to the first non-whitespace character on this line.
-If point was already at that position, move point to beginning of
-line."
-  (interactive) ; Use (interactive "^") in Emacs 23 to make shift-select work
+If point was already at that position, move
+point to beginning of line."
+  (interactive)
   (let ((oldpos (point)))
     (beginning-of-visual-line)
-    (and (= oldpos (point))
-	 (back-to-indentation))
-    )
-  )
+    (if (= oldpos (point))
+	(back-to-indentation))))
 
 (define-key visual-line-mode-map [remap move-beginning-of-line] 'my-smart-beginning-of-line)
 
