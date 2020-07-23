@@ -43,11 +43,6 @@
 (require 'yasnippet)
 (yas-global-mode 1)
 
-(require 'dired-x)
-(setq-default dired-omit-files-p t)
-(setq dired-omit-files (concat dired-omit-files "\\|^\\..+$"))
-(setq-default dired-dwim-target t)
-
 (require 'my-helm-config)
 
 (require 'projectile)
@@ -57,6 +52,37 @@
 
 (require 'helm-projectile)
 (helm-projectile-on)
+
+;; filemanagers
+(require 'dired-x)
+(setq-default dired-omit-files-p t)
+(setq dired-omit-files (concat dired-omit-files "\\|^\\..+$"))
+(setq-default dired-dwim-target t)
+(treemacs-icons-dired-mode)
+
+
+(defun my-is-current-buffer-treemacs-buffer ()
+  "Returns t if the current buffer is Treemacs buffer"
+  (eq (treemacs-get-local-buffer) (current-buffer)))
+
+(defun my-move-to-treemacs-dwim ()
+  "Currently just move the point to/from the Treemacs buffer"
+  (interactive)
+  (if (my-is-current-buffer-treemacs-buffer)
+      (treemacs-visit-node-default)
+    (treemacs-select-window)))
+
+(define-key global-map (kbd "<f8>") 'my-move-to-treemacs-dwim)
+(setq treemacs-is-never-other-window t)
+
+(setq treemacs-indentation-string (propertize "|" 'face 'font-lock-comment-face)
+      treemacs-indentation 1)
+(treemacs-resize-icons 12)
+(setq treemacs-width 25)
+
+(with-eval-after-load 'treemacs
+  (add-to-list 'treemacs-pre-file-insert-predicates #'treemacs-is-file-git-ignored?)
+  (require 'treemacs-magit))
 
 ;; miscellaneous
 
