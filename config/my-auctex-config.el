@@ -29,20 +29,22 @@
 (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
 (setq reftex-plug-into-AUCTeX t)
 
-(require 'company-auctex)
+;; pretty formulas
+(add-hook 'LaTeX-mode-hook 'prettify-symbols-mode)
+
+;; completion
 (defun my-company-auctex-init ()
   "Add backends provided by company-auctex to company-backends."
-  (set (make-local-variable 'company-backends)
-       '((company-auctex-macros company-auctex-symbols company-auctex-environments)
-	 company-auctex-labels company-auctex-bibs)))
-;; (company-auctex-init)
+  (progn
+    (require 'company-auctex)
+    (set (make-local-variable 'company-backends)
+	 '((company-auctex-macros company-auctex-symbols company-auctex-environments)
+	   company-auctex-labels company-auctex-bibs))))
 
 (defun my-LaTeX-hook()
   (my-company-auctex-init)
   (local-set-key [(control return)] 'TeX-complete-symbol))
 (add-hook 'LaTeX-mode-hook 'my-LaTeX-hook)
-
-(add-hook 'TeX-mode-hook 'prettify-symbols-mode)
 
 (defadvice LaTeX-fill-region-as-paragraph (around LaTeX-sentence-filling)
   "Start each sentence on a new line."
