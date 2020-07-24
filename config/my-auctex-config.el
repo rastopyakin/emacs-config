@@ -30,6 +30,7 @@
 (setq reftex-plug-into-AUCTeX t)
 
 ;; pretty formulas
+(setq prettify-symbols-unprettify-at-point t)
 (add-hook 'LaTeX-mode-hook 'prettify-symbols-mode)
 
 ;; completion
