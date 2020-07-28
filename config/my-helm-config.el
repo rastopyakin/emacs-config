@@ -26,8 +26,8 @@
   (define-key lisp-interaction-mode-map [remap completion-at-point] 'helm-lisp-completion-at-point)
   (define-key emacs-lisp-mode-map       [remap completion-at-point] 'helm-lisp-completion-at-point))
 
-(setq helm-autoresize-max-height 0)
-(setq helm-autoresize-min-height 50)
+(setq helm-autoresize-max-height 50)
+(setq helm-autoresize-min-height 20)
 (helm-autoresize-mode 1)
 
 (provide 'my-helm-config)
