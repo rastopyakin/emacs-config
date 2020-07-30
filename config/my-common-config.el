@@ -47,6 +47,7 @@
 
 (require 'projectile)
 (setq projectile-completion-system 'helm)
+(setq projectile-indexing-method 'hybrid)
 (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 (projectile-mode)
 
