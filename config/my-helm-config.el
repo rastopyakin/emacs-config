@@ -6,14 +6,12 @@
 (when (executable-find "curl")
   (setq helm-net-prefer-curl t))
 
-(setq helm-split-window-inside-p            nil
-      helm-move-to-line-cycle-in-source     t
-      helm-ff-search-library-in-sexp        t
-      helm-scroll-amount                    2
+(setq helm-split-window-inside-p t
+      helm-move-to-line-cycle-in-source t
       helm-ff-file-name-history-use-recentf t
       helm-echo-input-in-header-line t)
 
-;; (setq helm-M-x-fuzzy-match t)
+(push (if (version<= emacs-version "27.0") 'helm-flex 'flex) completion-styles)
 
 (define-key global-map [remap find-file] 'helm-find-files)
 (define-key global-map [remap occur] 'helm-occur)
