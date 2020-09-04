@@ -7,17 +7,14 @@
 (setq default-frame-alist '((vertical-scroll-bars . nil)
 			    (menu-bar-lines . nil)
 			    (tool-bar-lines . nil)
-			    (fullscreen . maximized)))
-
-(show-paren-mode 1)
+			    (fullscreen . maximized)
+			    (font . "DejaVu Sans Mono-10")))
 
 ;; the theme
 (load-theme 'monokai t)
+(doom-modeline-mode 1)
 
-;; default font
-(when (member "DejaVu Sans Mono" (font-family-list))
-    (add-to-list 'initial-frame-alist '(font . "DejaVu Sans Mono-10"))
-    (add-to-list 'default-frame-alist '(font . "DejaVu Sans Mono-10")))
+(show-paren-mode 1)
 
 ;; (global-set-key "\C-u" 'backward-kill-word)
 
