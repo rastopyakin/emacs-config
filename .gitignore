@@ -1,3 +1,16 @@
 *~
 *.elc
 elpa
+elpy
+.gitignore
+.cache
+irony
+eshell
+matlab-emacs-src
+bookmarks
+helm-*
+projectile*
+recentf
+tramp
+srecode-map.el
+transient
