@@ -36,48 +36,32 @@
 
 (require 'my-elpy-config)
 
-(require 'rtags)
-;; (require 'company-rtags)
-;; (setq rtags-completions-enabled t)
-(setq rtags-autostart-diagnostics t)
-(rtags-diagnostics)
-(rtags-enable-standard-keybindings)
-(setq rtags-display-result-backend 'helm)
-;; (require 'helm-rtags)
-;; (setq rtags-use-helm t)
-
-(require 'irony)
-(require 'company-irony)
-(add-hook 'c++-mode-hook 'irony-mode)
-(add-hook 'c-mode-hook 'irony-mode)
-(add-hook 'objc-mode-hook 'irony-mode)
-
-(require 'company-irony-c-headers)
-(defun my-irony-mode-hook ()
-  (define-key irony-mode-map [remap completion-at-point]
-    'irony-completion-at-point-async)
-  (define-key irony-mode-map [remap complete-symbol]
-    'irony-completion-at-point-async)
-  (set (make-local-variable 'company-backends)
-       (cons '(:separate company-irony-c-headers company-irony :with company-yasnippet)
-	     (delq 'company-semantic
-		   (mapcar #'identity company-backends)))))
-
-(add-hook 'irony-mode-hook #'my-irony-mode-hook)
-(add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
-(add-hook 'irony-mode-hook 'company-irony-setup-begin-commands)
 
 (add-hook 'c++-mode-hook 'modern-c++-font-lock-mode)
 
-(require 'irony-eldoc)
-(add-hook 'irony-mode-hook 'irony-eldoc)
 
-(define-key c-mode-base-map (kbd "<C-return>") (function company-complete))
 
 
 (require 'subr-x)
 (require 'cmake-ide)
 (cmake-ide-setup)
 (define-key c++-mode-map (kbd "<f5>") 'cmake-ide-compile)
+
+;; (require 'rtags)
+;; (require 'helm-rtags)
+;; (setq rtags-autostart-diagnostics t)
+;; (setq rtags-display-result-backend 'helm)
+;; (rtags-diagnostics)
+;; (rtags-enable-standard-keybindings)
+
+;; (defun my-irony-mode-hook ()
+  ;; (define-key irony-mode-map [remap completion-at-point]
+    ;; 'irony-completion-at-point-async)
+  ;; (define-key irony-mode-map [remap complete-symbol]
+    ;; 'irony-completion-at-point-async)
+  ;; (set (make-local-variable 'company-backends)
+       ;; (cons '(:separate company-irony-c-headers company-irony :with company-yasnippet)
+	     ;; (delq 'company-semantic
+		   ;; (mapcar #'identity company-backends)))))
 
 (load "~/.emacs-settings")
