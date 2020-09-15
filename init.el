@@ -39,13 +39,54 @@
 
 (add-hook 'c++-mode-hook 'modern-c++-font-lock-mode)
 
+(setq gc-cons-threshold 100000000)
+(setq read-process-output-max (* 1024 1024))
 
-
-
-(require 'subr-x)
 (require 'cmake-ide)
-(cmake-ide-setup)
+;; (cmake-ide-setup)
 (define-key c++-mode-map (kbd "<f5>") 'cmake-ide-compile)
+
+
+(defun cmake/lsp-ide-maybe-start-lsp ()
+  "Starts LSP mode"
+  (interactive)
+  (when (and (cide--comp-db-file-name) (file-exists-p (cide--comp-db-file-name)))
+    (cide--message "configuring lsp")
+    (let ((compile-commands-dir  (concat "--compile-commands-dir=" (cide--build-dir))))
+      (push compile-commands-dir lsp-clients-clangd-args))
+    (make-local-variable 'lsp-clients-clangd-args)
+    (lsp)))
+
+(defun cide/lsp-register-callback ()
+  (cide--register-a-callback
+   (lambda (process _event)
+     (cide--message "Finished running CMake")
+     (if (= 0 (process-exit-status process)) ; only perform post cmake operation on success.
+         (cmake/lsp-ide-maybe-start-lsp)
+       (cide--message "CMake failed, see *cmake* for details."))
+     (setq cmake-sentinel-flag nil)
+     (setq cmake-temp-project-dir nil))))
+
+(defun cide/lsp-maybe-run-cmake ()
+  (interactive)
+  (cmake-ide-maybe-run-cmake)
+  (if (get-process "cmake")
+      (cide/lsp-register-callback)
+    (cmake/lsp-ide-maybe-start-lsp)))
+
+(defun cmake/lsp-ide-mode-hook ()
+  (add-hook 'find-file-hook #'cide/lsp-maybe-run-cmake nil 'local)
+  ;; (cmake/lsp-ide-maybe-start-lsp)
+  (cmake-ide-maybe-start-rdm))
+
+(require 'lsp-mode)
+(setq lsp-completion-provider :capf)
+(with-eval-after-load 'lsp-mode
+  (add-hook 'lsp-mode-hook #'lsp-enable-which-key-integration))
+(setq lsp-auto-guess-root t)
+(setq lsp-clients-clangd-args '("--completion-style=bundled"))
+(add-hook 'c++-mode-hook #'cmake/lsp-ide-mode-hook)
+(add-hook 'before-save-hook #'cide--before-save)
 
 ;; (require 'rtags)
 ;; (require 'helm-rtags)
@@ -63,5 +104,9 @@
        ;; (cons '(:separate company-irony-c-headers company-irony :with company-yasnippet)
 	     ;; (delq 'company-semantic
 		   ;; (mapcar #'identity company-backends)))))
+
+
+
+;; (require 'subr-x)
 
 (load "~/.emacs-settings")
