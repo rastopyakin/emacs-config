@@ -43,6 +43,7 @@
 (setq read-process-output-max (* 1024 1024))
 
 (require 'cmake-ide)
+(setq cmake-ide-header-search-other-file nil)
 ;; (cmake-ide-setup)
 (define-key c++-mode-map (kbd "<f5>") 'cmake-ide-compile)
 
