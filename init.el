@@ -87,6 +87,7 @@
 (setq lsp-auto-guess-root t)
 (setq lsp-clients-clangd-args '("--completion-style=bundled"))
 (add-hook 'c++-mode-hook #'cmake/lsp-ide-mode-hook)
+(add-hook 'c-mode-hook #'cmake/lsp-ide-mode-hook)
 (add-hook 'before-save-hook #'cide--before-save)
 
 ;; (require 'rtags)
