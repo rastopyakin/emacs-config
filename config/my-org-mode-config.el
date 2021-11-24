@@ -12,6 +12,13 @@
        :capture-template "* TODO %?\n [[%l][link]]")
       org-capture-templates)
 
+(add-hook 'org-mode-hook #'org-bullets-mode)
+
+(require 'org-noter-pdftools)
+(add-hook 'org-mode-hook #'org-pdftools-setup-link)
+
+(add-hook 'pdf-annot-activate-handler-functions #'org-noter-pdftools-jump-to-note)
+
 (global-set-key "\C-cl" 'org-store-link)
 (global-set-key "\C-ca" 'org-agenda)
 (global-set-key "\C-cb" 'org-iswitchb)
@@ -20,8 +27,8 @@
 (add-to-list 'org-modules 'org-drill t)
 
 ;; todo states
-;; (setq org-todo-keywords
-;;       '((sequence "TODO" "ACTIVE" "INTERRUPTED" "|" "DONE" "CANCELED")))
+(setq org-todo-keywords
+      '((sequence "TODO(t)" "ACTIVE(a)" "|" "DONE(d)")))
 
 ;; some custom varibles
 (setq org-special-ctrl-a/e t)
