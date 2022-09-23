@@ -66,7 +66,8 @@
 (setq cmake-ide-header-search-other-file nil)
 ;; (cmake-ide-setup)
 (define-key c++-mode-map (kbd "<f5>") 'cmake-ide-compile)
-
+(define-key c-mode-map (kbd "<f5>") 'cmake-ide-compile)
+(add-hook 'cmake-mode-hook 'lsp)
 
 (defun cmake/lsp-ide-maybe-start-lsp ()
   "Starts LSP mode"
