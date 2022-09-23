@@ -3,7 +3,7 @@
 (setq elpy-rpc-python-command "python3")
 ;; (elpy-use-ipython "ipython3")
 (setq python-shell-interpreter "ipython3"
-      python-shell-interpreter-args "-i")
+      python-shell-interpreter-args "--simple-prompt -i")
 (setq elpy-remove-modeline-lighter t)
 (setq elpy-modules
       (delq 'elpy-module-company
