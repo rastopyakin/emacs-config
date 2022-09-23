@@ -26,6 +26,10 @@
 
 (add-to-list 'org-modules 'org-drill t)
 
+(require 'org-noter-pdftools)
+(add-hook 'org-mode-hook #'org-pdftools-setup-link)
+(add-hook 'pdf-annot-activate-handler-functions #'org-noter-pdftools-jump-to-note)
+
 ;; todo states
 (setq org-todo-keywords
       '((sequence "TODO(t)" "ACTIVE(a)" "|" "DONE(d)")))
@@ -33,5 +37,12 @@
 ;; some custom varibles
 (setq org-special-ctrl-a/e t)
 (setq org-log-done 'time)
+
+(add-hook 'org-mode-hook 'org-bullets-mode)
+
+
+
+(setq org-clock-persist 'history)
+(org-clock-persistence-insinuate)
 
 (provide 'my-org-mode-config)
