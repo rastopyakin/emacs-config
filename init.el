@@ -5,11 +5,31 @@
 ;; (package-initialize)
 (require 'package)
 (add-to-list 'package-archives
-             '("melpa" . "http://melpa.org/packages/") t)
+             '("melpa" . "https://melpa.org/packages/") t)
 (add-to-list 'package-archives
-             '("melpa-stable" . "http://stable.melpa.org/packages/") t)
+             '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 (add-to-list 'package-archives
 	     '("nongnu" . "https://elpa.nongnu.org/nongnu/") t)
+
+(dap-mode 1)
+;; Enabling only some features
+(setq dap-auto-configure-features '(expressions controls tooltip))
+
+(add-hook 'dap-stopped-hook
+          (lambda (arg) (call-interactively #'dap-hydra)))
+;; The modes below are optional
+
+;; (dap-ui-mode 1)
+;; ;; enables mouse hover support
+;; (dap-tooltip-mode 1)
+;; ;; use tooltips for mouse hover
+;; ;; if it is not enabled `dap-mode' will use the minibuffer.
+;; (tooltip-mode 1)
+;; ;; displays floating panel with debug buttons
+;; ;; requies emacs 26+
+;; (dap-ui-controls-mode 1)
+
+(require 'dap-lldb)
 
 
 
