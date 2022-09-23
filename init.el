@@ -110,6 +110,8 @@
 (add-hook 'c-mode-hook #'cmake/lsp-ide-mode-hook)
 (add-hook 'before-save-hook #'cide--before-save)
 
+(require 'lsp-java)
+(add-hook 'java-mode-hook 'lsp)
 ;; (require 'rtags)
 ;; (require 'helm-rtags)
 ;; (setq rtags-autostart-diagnostics t)
